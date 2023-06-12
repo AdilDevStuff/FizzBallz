@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sky.png-26d2f2385da36d2602e95bc19d12fcc5.stex"
+path="res://.import/BG.png-992580ef18b1dfcc1ed271e019a21746.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sky.png"
-dest_files=[ "res://.import/sky.png-26d2f2385da36d2602e95bc19d12fcc5.stex" ]
+source_file="res://Assets/Textures/BG.png"
+dest_files=[ "res://.import/BG.png-992580ef18b1dfcc1ed271e019a21746.stex" ]
 
 [params]
 
