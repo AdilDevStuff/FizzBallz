@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Characters/Player (Stone).png" type="Texture" id=1]
 [ext_resource path="res://Assets/Characters/Player (BeachBall).png" type="Texture" id=2]
@@ -98,7 +98,6 @@ func characterSwitch():
 	if canSwitch:
 		if Input.is_action_just_pressed(\"Switch\"):
 			switchAnimation()
-			
 
 func characterAbilities():
 	match index:
@@ -122,12 +121,43 @@ func getCurrentTexture():
 
 func _on_Collision_body_entered(body):
 	if body.is_in_group(\"Traps\") and index != 2:
-		var tween = get_tree().create_tween()
-		tween.tween_property(sprite, \"scale\", Vector2(0.7,0.7), 0.1)
-		tween.tween_property(sprite, \"scale\", Vector2(0,0), 0.2)
-		yield(tween, \"finished\")
+		playerAnims.play(\"Death\")
+
+func _on_PlayerAnims_animation_finished(anim_name):
+	if anim_name == \"Death\":
 		get_tree().reload_current_scene()
 "
+
+[sub_resource type="Animation" id=4]
+resource_name = "Death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.7, 0.7 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ) ]
+}
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 31.0161
@@ -148,14 +178,16 @@ lerpFactor = 10.0
 defaultScale = Vector2( 0.6, 0.6 )
 stretchedScale = Vector2( 0.4, 0.75 )
 
+[node name="PlayerAnims" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="PlayerAnims" type="AnimationPlayer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -100 )
@@ -167,4 +199,5 @@ smoothing_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 shape = SubResource( 3 )
 
+[connection signal="animation_finished" from="PlayerAnims" to="." method="_on_PlayerAnims_animation_finished"]
 [connection signal="body_entered" from="Collision" to="." method="_on_Collision_body_entered"]
