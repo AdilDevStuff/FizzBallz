@@ -86,10 +86,19 @@ func jumpAnimation():
 	tween.tween_property(sprite, \"scale\", stretchedScale, 0.1)
 	tween.tween_property(sprite, \"scale\", defaultScale, 0.2)
 
+func switchAnimation():
+	var tween = get_tree().create_tween()
+	tween.tween_property(sprite, \"scale\", Vector2(0.65,0.65), 0.1)
+	tween.tween_property(sprite, \"scale\", Vector2(0,0), 0.1)
+	tween.tween_property(sprite, \"scale\", defaultScale, 0.1)
+	yield (tween, \"step_finished\")
+	scrollToNextTexture()
+
 func characterSwitch():
 	if canSwitch:
 		if Input.is_action_just_pressed(\"Switch\"):
-			scrollToNextTexture()
+			switchAnimation()
+			
 
 func characterAbilities():
 	match index:
@@ -113,6 +122,10 @@ func getCurrentTexture():
 
 func _on_Collision_body_entered(body):
 	if body.is_in_group(\"Traps\") and index != 2:
+		var tween = get_tree().create_tween()
+		tween.tween_property(sprite, \"scale\", Vector2(0.7,0.7), 0.1)
+		tween.tween_property(sprite, \"scale\", Vector2(0,0), 0.2)
+		yield(tween, \"finished\")
 		get_tree().reload_current_scene()
 "
 
