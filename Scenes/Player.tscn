@@ -1,21 +1,143 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/Characters/Player (Normal).png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Characters/Player (Stone).png" type="Texture" id=1]
+[ext_resource path="res://Assets/Characters/Player (BeachBall).png" type="Texture" id=2]
+[ext_resource path="res://Assets/Characters/Player (Normal).png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends KinematicBody2D
+
+# ---------- VARIABLES ---------- #
+
+# NORMAL
+export (Texture) var normalBall
+export (Texture) var beachBall
+export (Texture) var stoneBall
+
+export (float) var speed
+export (float) var gravity
+export (float) var jumpForce
+export (float) var rotatingSpeed
+export (float) var lerpFactor
+var jumpCount = 2
+var index = 0
+
+# BOOLEANS
+var isMoving = true
+var canSwitch = true
+
+# VECTOR
+export (Vector2) var defaultScale
+export (Vector2) var stretchedScale
+var velocity := Vector2.ZERO
+var direction = Vector2.ZERO
+
+# ONREADY
+onready var playerAnims = $PlayerAnims
+onready var sprite = $Sprite
+onready var textures = [normalBall, beachBall, stoneBall]
+
+# ---------- BUILT-IN FUNCTIONS ---------- #
+
+func _ready():
+	pass
+
+func _process(delta):
+	sprite.texture = getCurrentTexture()
+
+func _physics_process(delta):
+	movement(delta)
+	characterSwitch()
+	characterAbilities()
+
+# ---------- CUSTOM FUNCTIONS ---------- #
+
+func movement(delta):
+	if !is_on_floor():
+		velocity.y += gravity
+	else:
+		jumpCount = 2
+
+	if Input.is_action_just_pressed(\"Jump\") and jumpCount > 0:
+		jumpAnimation()
+		velocity.y = -jumpForce
+		jumpCount -= 1
+	
+	var horizontalAxis = Input.get_axis(\"Left\", \"Right\")
+	getInput(horizontalAxis, delta)
+	
+	velocity = move_and_slide(velocity, Vector2.UP)
+
+func getInput(horizontalAxis: float, delta):
+	if horizontalAxis == 1:
+		velocity.x = speed
+		sprite.rotation_degrees += deg2rad(rotatingSpeed)
+		isMoving = true
+	elif horizontalAxis == -1:
+		velocity.x = -speed
+		sprite.rotation_degrees -= deg2rad(rotatingSpeed)
+		isMoving = true
+	else:
+		velocity.x = lerp(velocity.x, 0, lerpFactor * delta)
+		isMoving = false
+
+func jumpAnimation():
+	var tween = get_tree().create_tween()
+	tween.tween_property(sprite, \"scale\", stretchedScale, 0.1)
+	tween.tween_property(sprite, \"scale\", defaultScale, 0.2)
+
+func characterSwitch():
+	if canSwitch:
+		if Input.is_action_just_pressed(\"Switch\"):
+			scrollToNextTexture()
+
+func characterAbilities():
+	match index:
+		0:
+			speed = 400
+			gravity = 30
+		1:
+			speed = 500
+			gravity = 20
+		2:
+			speed = 300
+			gravity = 40
+
+func scrollToNextTexture():
+	index = posmod(index + 1, textures.size())
+
+func getCurrentTexture():
+	return textures[index]
+
+# ---------- SIGNALS ---------- #
+
+func _on_Collision_body_entered(body):
+	if body.is_in_group(\"Traps\") and index != 2:
+		get_tree().reload_current_scene()
+"
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 34.1321
+radius = 31.0161
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 32.3883
 
 [node name="Player" type="KinematicBody2D"]
-script = ExtResource( 2 )
+script = SubResource( 2 )
+normalBall = ExtResource( 3 )
+beachBall = ExtResource( 2 )
+stoneBall = ExtResource( 1 )
 speed = 400.0
 gravity = 30.0
 jumpForce = 600.0
 rotatingSpeed = 500.0
 lerpFactor = 10.0
+defaultScale = Vector2( 0.6, 0.6 )
+stretchedScale = Vector2( 0.4, 0.75 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -23,6 +145,13 @@ shape = SubResource( 1 )
 [node name="PlayerAnims" type="AnimationPlayer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 0, -130 )
+offset = Vector2( 0, -100 )
 current = true
 smoothing_enabled = true
+
+[node name="Collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="Collision" to="." method="_on_Collision_body_entered"]

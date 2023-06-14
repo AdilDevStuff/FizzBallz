@@ -12,8 +12,11 @@ var jumpCount = 2
 
 
 # BOOLEANS
+var isMoving = true
 
 # VECTOR
+export (Vector2) var defaultScale
+export (Vector2) var stretchedScale
 var velocity := Vector2.ZERO
 var direction = Vector2.ZERO
 
@@ -46,26 +49,27 @@ func movement(delta):
 		jumpCount -= 1
 	
 	var horizontalAxis = Input.get_axis("Left", "Right")
-	rotatePlayer(horizontalAxis, delta)
-	
-	if horizontalAxis == 1:
-		velocity.x = speed
-	elif horizontalAxis == -1:
-		velocity.x = -speed
-	else:
-		velocity.x = lerp(velocity.x, 0, lerpFactor * delta)
+	getInput(horizontalAxis, delta)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-func rotatePlayer(horizontalAxis: float, delta):
+func getInput(horizontalAxis: float, delta):
 	if horizontalAxis == 1:
+		velocity.x = speed
 		sprite.rotation_degrees += deg2rad(rotatingSpeed)
+		isMoving = true
 	elif horizontalAxis == -1:
+		velocity.x = -speed
 		sprite.rotation_degrees -= deg2rad(rotatingSpeed)
+		isMoving = true
+	else:
+		velocity.x = lerp(velocity.x, 0, lerpFactor * delta)
+		isMoving = false
+
 
 func jumpAnimation():
 	var tween = get_tree().create_tween()
-	tween.tween_property($Sprite, "scale", Vector2(0.8, 1.2), 0.1)
-	tween.tween_property($Sprite, "scale", Vector2(1, 1), 0.2)
+	tween.tween_property(sprite, "scale", stretchedScale, 0.1)
+	tween.tween_property(sprite, "scale", defaultScale, 0.2)
 
 # ---------- SIGNALS ---------- #
