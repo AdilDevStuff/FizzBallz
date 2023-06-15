@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Characters/Player (Stone).png" type="Texture" id=1]
 [ext_resource path="res://Assets/Characters/Player (BeachBall).png" type="Texture" id=2]
 [ext_resource path="res://Assets/Characters/Player (Normal).png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/BebasNueueFont.tres" type="DynamicFont" id=4]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends KinematicBody2D
@@ -14,21 +15,22 @@ export (Texture) var normalBall
 export (Texture) var beachBall
 export (Texture) var stoneBall
 
-export (float) var speed
-export (float) var gravity
-export (float) var jumpForce
-export (float) var rotatingSpeed
-export (float) var lerpFactor
+export (float) var speed = 600
+export (float) var gravity = 30
+export (float) var jumpForce = 700
+export (float) var rotatingSpeed = 500
+export (float) var lerpFactor = 10
 var jumpCount = 2
 var index = 0
 
 # BOOLEANS
 var isMoving = true
 var canSwitch = true
+var isDead = false
 
 # VECTOR
-export (Vector2) var defaultScale
-export (Vector2) var stretchedScale
+export (Vector2) var defaultScale = Vector2(0.6, 0.6)
+export (Vector2) var stretchedScale = Vector2(0.4, 0.75)
 var velocity := Vector2.ZERO
 var direction = Vector2.ZERO
 
@@ -36,19 +38,21 @@ var direction = Vector2.ZERO
 onready var playerAnims = $PlayerAnims
 onready var sprite = $Sprite
 onready var textures = [normalBall, beachBall, stoneBall]
+onready var label = $Label
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
 func _ready():
-	pass
+	label.visible = false
 
 func _process(delta):
 	sprite.texture = getCurrentTexture()
 
 func _physics_process(delta):
-	movement(delta)
-	characterSwitch()
-	characterAbilities()
+	if !isDead:
+		movement(delta)
+		characterSwitch()
+		characterAbilities()
 
 # ---------- CUSTOM FUNCTIONS ---------- #
 
@@ -104,12 +108,15 @@ func characterAbilities():
 		0:
 			speed = 400
 			gravity = 30
+			rotatingSpeed = 500
 		1:
 			speed = 500
 			gravity = 20
+			rotatingSpeed = 600
 		2:
-			speed = 300
-			gravity = 40
+			speed = 250
+			gravity = 50
+			rotatingSpeed = 300
 
 func scrollToNextTexture():
 	index = posmod(index + 1, textures.size())
@@ -121,11 +128,13 @@ func getCurrentTexture():
 
 func _on_Collision_body_entered(body):
 	if body.is_in_group(\"Traps\") and index != 2:
+		isDead = true
 		playerAnims.play(\"Death\")
 
 func _on_PlayerAnims_animation_finished(anim_name):
 	if anim_name == \"Death\":
 		get_tree().reload_current_scene()
+
 "
 
 [sub_resource type="Animation" id=4]
@@ -170,13 +179,6 @@ script = SubResource( 2 )
 normalBall = ExtResource( 3 )
 beachBall = ExtResource( 2 )
 stoneBall = ExtResource( 1 )
-speed = 400.0
-gravity = 30.0
-jumpForce = 600.0
-rotatingSpeed = 500.0
-lerpFactor = 10.0
-defaultScale = Vector2( 0.6, 0.6 )
-stretchedScale = Vector2( 0.4, 0.75 )
 
 [node name="PlayerAnims" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 4 )
@@ -189,15 +191,18 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 0, -100 )
-current = true
-smoothing_enabled = true
-
 [node name="Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 shape = SubResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -100.0
+margin_top = -110.0
+margin_right = 105.0
+margin_bottom = -51.0
+custom_fonts/font = ExtResource( 4 )
+text = "\"F\" To Pickup"
 
 [connection signal="animation_finished" from="PlayerAnims" to="." method="_on_PlayerAnims_animation_finished"]
 [connection signal="body_entered" from="Collision" to="." method="_on_Collision_body_entered"]
