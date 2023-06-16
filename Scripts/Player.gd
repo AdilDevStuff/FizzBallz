@@ -137,7 +137,7 @@ func pickupCastCheck():
 		var collider = pickCast.get_collider()
 		if collider.is_in_group("Pickable") and index == 2:
 			pickupInfoLabel.visible = true
-			if Input.is_action_just_pressed("Pickup") and index == 2 and !isPicked:
+			if Input.is_action_just_pressed("Pickup") and index == 2 and !isPicked and !canDrop:
 				isPicked = true
 				canDrop = true
 				# Tween Crate To 0
