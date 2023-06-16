@@ -12,7 +12,9 @@ export (float) var gravity = 30
 export (float) var jumpForce = 700
 export (float) var lerpFactor = 10
 export (float) var rotatingSpeed = 500
+export (float) var crateJumpDelay = 0.4
 export (float) var pickupCastLength = 100
+export (float) var pickableTiltAngle = 300
 var index = 0
 var jumpCount = 2
 
@@ -86,20 +88,29 @@ func getInput(horizontalAxis: float, delta):
 		isMoving = true
 		pickCast.cast_to.x = pickupCastLength
 		cratespawnPos.position = pickupDropPosition
+		pickable.rotation_degrees = lerp(pickable.rotation_degrees, deg2rad(-pickableTiltAngle), 0.2)
 	elif horizontalAxis == -1:
 		velocity.x = -speed
 		sprite.rotation_degrees -= deg2rad(rotatingSpeed)
 		isMoving = true
 		pickCast.cast_to.x = -pickupCastLength
 		cratespawnPos.position = -pickupDropPosition
+		pickable.rotation_degrees = lerp(pickable.rotation_degrees, deg2rad(pickableTiltAngle), 0.2)
 	else:
 		velocity.x = lerp(velocity.x, 0, lerpFactor * delta)
+		pickable.rotation_degrees = lerp(pickable.rotation_degrees, deg2rad(0), 0.2)
 		isMoving = false
 
 func jumpAnimation():
+	crateJumpAnimation()
 	var tween = get_tree().create_tween()
 	tween.tween_property(sprite, "scale", stretchedScale, 0.1)
 	tween.tween_property(sprite, "scale", defaultScale, 0.2)
+
+func crateJumpAnimation():
+	var tween = get_tree().create_tween()
+	tween.tween_property(pickable, "position", Vector2(0,-30), 0.4)
+	tween.tween_property(pickable, "position", Vector2(0,-0), 0.2)
 
 func switchAnimation():
 	var tween = get_tree().create_tween()

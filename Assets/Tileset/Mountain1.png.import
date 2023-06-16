@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Dirt (No Outline).png-59601c2d08a9e137def0b8d14a3498fa.stex"
+path="res://.import/Mountain1.png-9caeab836a3a5dca78953f170a660192.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tileset/Unoutlined/Dirt (No Outline).png"
-dest_files=[ "res://.import/Dirt (No Outline).png-59601c2d08a9e137def0b8d14a3498fa.stex" ]
+source_file="res://Assets/Tileset/Mountain1.png"
+dest_files=[ "res://.import/Mountain1.png-9caeab836a3a5dca78953f170a660192.stex" ]
 
 [params]
 

@@ -51,6 +51,7 @@ script = ExtResource( 4 )
 normalBall = ExtResource( 3 )
 beachBall = ExtResource( 2 )
 stoneBall = ExtResource( 1 )
+pickableTiltAngle = 400.0
 
 [node name="PlayerAnims" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 4 )
