@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cloud 1.png-c1edd2a34aae23d5f6e922a2d828ef7b.stex"
+path="res://.import/Player (BeachBall).png-7d16e0ed19ab6295acb5070b6240c730.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environment/Background Elements/Cloud 1.png"
-dest_files=[ "res://.import/Cloud 1.png-c1edd2a34aae23d5f6e922a2d828ef7b.stex" ]
+source_file="res://Assets/Characters/Sprites/Player (BeachBall).png"
+dest_files=[ "res://.import/Player (BeachBall).png-7d16e0ed19ab6295acb5070b6240c730.stex" ]
 
 [params]
 

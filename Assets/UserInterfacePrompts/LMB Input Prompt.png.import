@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player (Stone).png-ddbcd508de443c72a2b9688bc9e24dc8.stex"
+path="res://.import/LMB Input Prompt.png-349731dc7df7b5a59b5b507e9e9e3844.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Player (Stone).png"
-dest_files=[ "res://.import/Player (Stone).png-ddbcd508de443c72a2b9688bc9e24dc8.stex" ]
+source_file="res://Assets/UserInterfacePrompts/LMB Input Prompt.png"
+dest_files=[ "res://.import/LMB Input Prompt.png-349731dc7df7b5a59b5b507e9e9e3844.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player (BeachBall).png-ce43566f8bc57e9795b601c895d80cbd.stex"
+path="res://.import/StoneTexture.png-5d11ccff75e8e6a9dc30a75c50ed46ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Player (BeachBall).png"
-dest_files=[ "res://.import/Player (BeachBall).png-ce43566f8bc57e9795b601c895d80cbd.stex" ]
+source_file="res://Assets/Tileset/StoneTexture.png"
+dest_files=[ "res://.import/StoneTexture.png-5d11ccff75e8e6a9dc30a75c50ed46ba.stex" ]
 
 [params]
 

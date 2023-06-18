@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sky.png-dd284c6cd2fb9afef3ee68057b95ae58.stex"
+path="res://.import/BeachFuse.png-2969c45d750671f9b56b3a0b8bbf36b4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/sky.png"
-dest_files=[ "res://.import/sky.png-dd284c6cd2fb9afef3ee68057b95ae58.stex" ]
+source_file="res://Assets/Characters/Fuses/BeachFuse.png"
+dest_files=[ "res://.import/BeachFuse.png-2969c45d750671f9b56b3a0b8bbf36b4.stex" ]
 
 [params]
 

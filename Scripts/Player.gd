@@ -39,7 +39,7 @@ onready var sprite = $Sprite
 onready var pickCast = $PickCast
 onready var pickable = $Head/Pickable
 onready var playerAnims = $PlayerAnims
-onready var pickupInfoLabel = $PickupInfo
+onready var inputPrompt = $InputPrompt
 onready var cratespawnPos = $Head/CrateSpawnPos
 onready var crate = preload("res://Scenes/Crate1.tscn")
 onready var textures = [normalBall, beachBall, stoneBall]
@@ -47,7 +47,7 @@ onready var textures = [normalBall, beachBall, stoneBall]
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
 func _ready():
-	pickupInfoLabel.visible = false
+	inputPrompt.visible = false
 	pickCast.cast_to.x = pickupCastLength
 	cratespawnPos.position = pickupDropPosition
 	head.get_node("Pickable").visible = false
@@ -102,15 +102,21 @@ func getInput(horizontalAxis: float, delta):
 		isMoving = false
 
 func jumpAnimation():
-	crateJumpAnimation()
+	crateScaleTween()
+	cratePositionTween()
 	var tween = get_tree().create_tween()
 	tween.tween_property(sprite, "scale", stretchedScale, 0.1)
 	tween.tween_property(sprite, "scale", defaultScale, 0.2)
 
-func crateJumpAnimation():
+func cratePositionTween():
 	var tween = get_tree().create_tween()
-	tween.tween_property(pickable, "position", Vector2(0,-30), 0.4)
-	tween.tween_property(pickable, "position", Vector2(0,-0), 0.2)
+	tween.tween_property(pickable, "position", Vector2(0,-30), 0.3)
+	tween.tween_property(pickable, "position", Vector2(0,0), 0.2)
+
+func crateScaleTween():
+	var tween = get_tree().create_tween()
+	tween.tween_property(pickable, "scale", Vector2(0.85,1.1), 0.12)
+	tween.tween_property(pickable, "scale", Vector2(1,1), 0.12)
 
 func switchAnimation():
 	var tween = get_tree().create_tween()
@@ -127,17 +133,17 @@ func characterSwitch():
 
 func characterAbilities():
 	match index:
-		0:
+		0: # Normal Ball
 			speed = 400
 			gravity = 30
 			rotatingSpeed = 500
 			pickCast.enabled = false
-		1:
+		1: # Beach Ball
 			speed = 500
 			gravity = 20
 			rotatingSpeed = 600
 			pickCast.enabled = false
-		2:
+		2: # Stone Ball
 			speed = 250
 			gravity = 50
 			rotatingSpeed = 300
@@ -147,23 +153,23 @@ func pickupCastCheck():
 	if pickCast.is_colliding():
 		var collider = pickCast.get_collider()
 		if collider.is_in_group("Pickable") and index == 2:
-			pickupInfoLabel.visible = true
+			inputPrompt.visible = true
 			if Input.is_action_just_pressed("Pickup") and index == 2 and !isPicked and !canDrop:
 				isPicked = true
 				canDrop = true
 				# Tween Crate To 0
 				var tween = get_tree().create_tween()
-				tween.tween_property(collider,"scale", Vector2(0,0), 0.05)
+				tween.tween_property(collider,"scale", Vector2(0,0), 0.07)
 				# Tween Crate Sprite To 1
 				var spriteTween = get_tree().create_tween()
 				pickable.scale = Vector2.ZERO
-				spriteTween.tween_property(pickable, "scale", Vector2(1,1), 0.05)
+				spriteTween.tween_property(pickable, "scale", Vector2(1,1), 0.07)
 				pickable.visible = true
 				yield(tween, "finished")
 				# Delete Crate Instance / Picked Crate
 				collider.queue_free()
 	else:
-		pickupInfoLabel.visible = false
+		inputPrompt.visible = false
 
 func dropPickable():
 	if isPicked and canDrop and index == 2:
@@ -173,13 +179,17 @@ func dropPickable():
 		spawnPickable()
 
 func spawnPickable():
-	var newCrateInstance = crate.instance()
-	newCrateInstance.global_position = cratespawnPos.global_position
-	get_parent().add_child(newCrateInstance)
-	canDrop = false
-	isPicked = false
-	pickable.visible = false
-	pickCast.enabled = true
+	if !pickCast.is_colliding():
+		var newCrateInstance = crate.instance()
+		var instanceTween = get_tree().create_tween()
+		newCrateInstance.global_position = cratespawnPos.global_position
+		newCrateInstance.global_scale = Vector2.ZERO
+		get_parent().add_child(newCrateInstance)
+		instanceTween.tween_property(newCrateInstance, "scale", Vector2(1,1), 0.07)
+		canDrop = false
+		isPicked = false
+		pickable.visible = false
+		pickCast.enabled = true
 
 func scrollToNextTexture():
 	index = posmod(index + 1, textures.size())

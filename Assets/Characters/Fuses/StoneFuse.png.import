@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mountain1.png-9caeab836a3a5dca78953f170a660192.stex"
+path="res://.import/StoneFuse.png-e949f55000f75471e08cf0521ac98a0c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tileset/Mountain1.png"
-dest_files=[ "res://.import/Mountain1.png-9caeab836a3a5dca78953f170a660192.stex" ]
+source_file="res://Assets/Characters/Fuses/StoneFuse.png"
+dest_files=[ "res://.import/StoneFuse.png-e949f55000f75471e08cf0521ac98a0c.stex" ]
 
 [params]
 
