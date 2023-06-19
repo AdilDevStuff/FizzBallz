@@ -43,6 +43,7 @@ onready var inputPrompt = $InputPrompt
 onready var cratespawnPos = $Head/CrateSpawnPos
 onready var crate = preload("res://Scenes/Crate1.tscn")
 onready var textures = [normalBall, beachBall, stoneBall]
+onready var mainMenuUI = $"../MainMenu/MainMenuUI"
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
@@ -54,10 +55,14 @@ func _ready():
 
 func _process(delta):
 	sprite.texture = getCurrentTexture()
+	
+	if isPicked:
+		inputPrompt.visible = false
 
 func _physics_process(delta):
 	if !isDead:
 		movement(delta)
+	if !isDead and !mainMenuUI.visible:
 		characterSwitch()
 		characterAbilities()
 		pickupCastCheck()
@@ -70,14 +75,14 @@ func movement(delta):
 		velocity.y += gravity
 	else:
 		jumpCount = 2
-
-	if Input.is_action_just_pressed("Jump") and jumpCount > 0:
-		jumpAnimation()
-		velocity.y = -jumpForce
-		jumpCount -= 1
-	
-	var horizontalAxis = Input.get_axis("Left", "Right")
-	getInput(horizontalAxis, delta)
+	if !mainMenuUI.visible:
+		if Input.is_action_just_pressed("Jump") and jumpCount > 0:
+			jumpAnimation()
+			velocity.y = -jumpForce
+			jumpCount -= 1
+		
+		var horizontalAxis = Input.get_axis("Left", "Right")
+		getInput(horizontalAxis, delta)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 

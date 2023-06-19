@@ -75,10 +75,10 @@ position = Vector2( 90, 0 )
 [node name="InputPrompt" type="Node2D" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="InputPrompt"]
-margin_left = -43.0
-margin_top = -86.0
+margin_left = -38.0
+margin_top = -83.0
 margin_right = -18.0
-margin_bottom = -45.0
+margin_bottom = -50.0
 size_flags_vertical = 2
 texture = ExtResource( 6 )
 expand = true
