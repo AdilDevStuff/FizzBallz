@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Fonts/BebasNueueFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/UserInterfacePrompts/LMB Input Prompt.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Environment/Props/Crate/Crate.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=4]
 resource_name = "Death"
@@ -38,10 +39,6 @@ tracks/0/keys = {
 "values": [ Vector2( 0.6, 0.6 ) ]
 }
 
-[sub_resource type="StreamTexture" id=6]
-flags = 4
-load_path = "res://.import/Crate1.png-06adb502f6039321c4f3b27efb672bf2.stex"
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 31.0161
 
@@ -66,7 +63,7 @@ texture = ExtResource( 3 )
 [node name="Head" type="Node2D" parent="."]
 
 [node name="Pickable" type="Sprite" parent="Head"]
-texture = SubResource( 6 )
+texture = ExtResource( 7 )
 offset = Vector2( 0, -80 )
 
 [node name="CrateSpawnPos" type="Position2D" parent="Head"]

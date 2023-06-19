@@ -44,6 +44,7 @@ onready var cratespawnPos = $Head/CrateSpawnPos
 onready var crate = preload("res://Scenes/Crate1.tscn")
 onready var textures = [normalBall, beachBall, stoneBall]
 onready var mainMenuUI = $"../MainMenu/MainMenuUI"
+onready var pauseMenuUI = $"../PauseMenu/PauseMenuUI"
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
@@ -51,7 +52,7 @@ func _ready():
 	inputPrompt.visible = false
 	pickCast.cast_to.x = pickupCastLength
 	cratespawnPos.position = pickupDropPosition
-	head.get_node("Pickable").visible = false
+	pickable.visible = false
 
 func _process(delta):
 	sprite.texture = getCurrentTexture()
@@ -60,9 +61,9 @@ func _process(delta):
 		inputPrompt.visible = false
 
 func _physics_process(delta):
-	if !isDead:
+	if !isDead and !pauseMenuUI.visible:
 		movement(delta)
-	if !isDead and !mainMenuUI.visible:
+	if !isDead and !mainMenuUI.visible and !pauseMenuUI.visible:
 		characterSwitch()
 		characterAbilities()
 		pickupCastCheck()
@@ -208,6 +209,7 @@ func _on_Collision_body_entered(body):
 	if body.is_in_group("Traps") and index != 2:
 		isDead = true
 		playerAnims.play("Death")
+		SceneTransition.reloadScene()
 
 func _on_PlayerAnims_animation_finished(anim_name):
 	if anim_name == "Death":

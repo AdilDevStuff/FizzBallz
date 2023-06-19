@@ -26,9 +26,10 @@ func _ready():
 	pass
 
 func _process(delta):
-	playBtnHover()
-	creditsBtnHover()
-	exitBtnHover()
+	if visible:
+		playBtnHover()
+		creditsBtnHover()
+		exitBtnHover()
 
 func _physics_process(delta):
 	pass

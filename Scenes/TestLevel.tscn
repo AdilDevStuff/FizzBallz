@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Assets/Tileset/Spikes.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -16,6 +16,11 @@
 [ext_resource path="res://Assets/UserInterfacePrompts/UIButtonDesign.tres" type="StyleBox" id=14]
 [ext_resource path="res://Scripts/MenuBtns.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/MainMenuUI.gd" type="Script" id=16]
+[ext_resource path="res://Assets/UI Textures/Characters.png" type="Texture" id=17]
+[ext_resource path="res://Scripts/PauseMenuBtns.gd" type="Script" id=18]
+[ext_resource path="res://Assets/Fonts/LuckiestGuy.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://Scripts/PauseMenuUI.gd" type="Script" id=20]
+[ext_resource path="res://Assets/UI Textures/FizzBallz Game Title.png" type="Texture" id=21]
 
 [sub_resource type="Gradient" id=21]
 offsets = PoolRealArray( 0, 0.528986 )
@@ -297,7 +302,376 @@ void fragment(){
 shader = SubResource( 35 )
 shader_param/lod = 1.8
 
-[node name="Level_1" type="Node2D"]
+[sub_resource type="DynamicFont" id=37]
+size = 72
+font_data = ExtResource( 19 )
+
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="DynamicFont" id=38]
+size = 48
+use_filter = true
+extra_spacing_top = 11
+font_data = ExtResource( 19 )
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=43]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=44]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=45]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="Animation" id=50]
+resource_name = "Enter"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("PauseMenuBtns:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0113205 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Blur:material:shader_param/lod")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 0.0, 1.8 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Blur:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=51]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PauseMenuBtns:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Blur:material:shader_param/lod")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.8 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Blur:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "Enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameTitle:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuBtns:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Blur:material:shader_param/lod")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 0.0, 1.8 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BG:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.313726 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CharactersLogo:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=49]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameTitle:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuBtns:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Blur:material:shader_param/lod")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.8 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BG:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BG:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.313726 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CharactersLogo:rect_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[node name="TestLevel" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 20 )
@@ -409,6 +783,112 @@ position = Vector2( 3169, 540 )
 margin_right = 40.0
 margin_bottom = 40.0
 
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="PauseMenuUI" type="Control" parent="PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 512, 300 )
+script = ExtResource( 20 )
+
+[node name="Blur" type="ColorRect" parent="PauseMenu/PauseMenuUI"]
+material = SubResource( 36 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 512, 300 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="BG" type="ColorRect" parent="PauseMenu/PauseMenuUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 512, 300 )
+color = Color( 0, 0, 0, 0.313726 )
+
+[node name="PauseMenuBtns" type="VBoxContainer" parent="PauseMenu/PauseMenuUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -119.0
+margin_top = -118.0
+margin_right = 135.0
+margin_bottom = 186.0
+rect_pivot_offset = Vector2( 119, 118 )
+custom_constants/separation = 10
+script = ExtResource( 18 )
+tweenDuration = 0.1
+marginRight = 274.0
+marginLeft = -20.0
+marginRightDefault = 254.0
+
+[node name="Paused" type="Label" parent="PauseMenu/PauseMenuUI/PauseMenuBtns"]
+margin_right = 254.0
+margin_bottom = 73.0
+rect_pivot_offset = Vector2( 119, 0 )
+custom_fonts/font = SubResource( 37 )
+text = "Paused"
+align = 1
+valign = 1
+
+[node name="ResumeBtn" type="Button" parent="PauseMenu/PauseMenuUI/PauseMenuBtns"]
+margin_top = 83.0
+margin_right = 254.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 239, 69 )
+rect_pivot_offset = Vector2( 120, 36 )
+focus_mode = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 13 )
+custom_styles/hover = SubResource( 39 )
+custom_styles/pressed = SubResource( 40 )
+custom_styles/normal = SubResource( 41 )
+enabled_focus_mode = 0
+text = "resume"
+icon_align = 1
+
+[node name="MenuBtn" type="Button" parent="PauseMenu/PauseMenuUI/PauseMenuBtns"]
+margin_top = 162.0
+margin_right = 254.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 200, 60 )
+rect_pivot_offset = Vector2( 120, 36 )
+focus_mode = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 38 )
+custom_styles/hover = SubResource( 42 )
+custom_styles/pressed = SubResource( 43 )
+custom_styles/normal = SubResource( 44 )
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+text = "Menu"
+clip_text = true
+
+[node name="ExitBtn" type="Button" parent="PauseMenu/PauseMenuUI/PauseMenuBtns"]
+margin_top = 238.0
+margin_right = 254.0
+margin_bottom = 304.0
+rect_min_size = Vector2( 200, 60 )
+rect_pivot_offset = Vector2( 120, 36 )
+focus_mode = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 13 )
+custom_styles/hover = SubResource( 45 )
+custom_styles/pressed = SubResource( 46 )
+custom_styles/normal = SubResource( 47 )
+enabled_focus_mode = 0
+text = "EXIT"
+icon_align = 1
+
+[node name="PauseMenuAnims" type="AnimationPlayer" parent="PauseMenu/PauseMenuUI"]
+anims/Enter = SubResource( 50 )
+anims/RESET = SubResource( 51 )
+
 [node name="MainMenu" type="CanvasLayer" parent="."]
 
 [node name="MainMenuUI" type="Control" parent="MainMenu"]
@@ -416,8 +896,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 300 )
 script = ExtResource( 16 )
-tweenDuration = 0.2
-zeroOpacity = Color( 0, 0, 0, 0 )
 
 [node name="Blur" type="ColorRect" parent="MainMenu/MainMenuUI"]
 material = SubResource( 36 )
@@ -432,25 +910,29 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 300 )
 color = Color( 0, 0, 0, 0.313726 )
 
+[node name="GameTitle" type="TextureRect" parent="MainMenu/MainMenuUI"]
+margin_left = 28.0
+margin_top = 86.0
+margin_right = 305.0
+margin_bottom = 281.0
+rect_pivot_offset = Vector2( 138, 97 )
+texture = ExtResource( 21 )
+expand = true
+
 [node name="MenuBtns" type="VBoxContainer" parent="MainMenu/MainMenuUI"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 48.0
-margin_top = 12.0
+margin_top = 18.0
 margin_right = 287.0
-margin_bottom = 249.0
+margin_bottom = 239.0
 rect_pivot_offset = Vector2( 119, 118 )
 custom_constants/separation = 10
 script = ExtResource( 15 )
 
-[node name="GameTitle" type="TextureRect" parent="MainMenu/MainMenuUI/MenuBtns"]
-margin_right = 239.0
-rect_pivot_offset = Vector2( 119, 0 )
-
 [node name="PlayBtn" type="Button" parent="MainMenu/MainMenuUI/MenuBtns"]
-margin_top = 10.0
 margin_right = 239.0
-margin_bottom = 79.0
+margin_bottom = 69.0
 rect_min_size = Vector2( 239, 69 )
 rect_pivot_offset = Vector2( 120, 36 )
 focus_mode = 0
@@ -467,9 +949,9 @@ align = 0
 icon_align = 1
 
 [node name="CreditsBtn" type="Button" parent="MainMenu/MainMenuUI/MenuBtns"]
-margin_top = 89.0
+margin_top = 79.0
 margin_right = 239.0
-margin_bottom = 158.0
+margin_bottom = 145.0
 rect_min_size = Vector2( 200, 60 )
 rect_pivot_offset = Vector2( 120, 36 )
 focus_mode = 0
@@ -486,9 +968,9 @@ align = 0
 icon_align = 1
 
 [node name="ExitBtn" type="Button" parent="MainMenu/MainMenuUI/MenuBtns"]
-margin_top = 168.0
+margin_top = 155.0
 margin_right = 239.0
-margin_bottom = 237.0
+margin_bottom = 221.0
 rect_min_size = Vector2( 200, 60 )
 rect_pivot_offset = Vector2( 120, 36 )
 focus_mode = 0
@@ -504,6 +986,33 @@ text = "EXIT"
 align = 0
 icon_align = 1
 
+[node name="CharactersLogo" type="TextureRect" parent="MainMenu/MainMenuUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -195.0
+margin_top = -171.0
+margin_right = -32.0
+margin_bottom = -24.0
+rect_pivot_offset = Vector2( 81, 73 )
+texture = ExtResource( 17 )
+expand = true
+
+[node name="MenuAnims" type="AnimationPlayer" parent="MainMenu/MainMenuUI"]
+autoplay = "Enter"
+anims/Enter = SubResource( 48 )
+anims/RESET = SubResource( 49 )
+
+[connection signal="mouse_entered" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ResumeBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_ResumeBtn_mouse_entered"]
+[connection signal="mouse_exited" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ResumeBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_ResumeBtn_mouse_exited"]
+[connection signal="pressed" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ResumeBtn" to="PauseMenu/PauseMenuUI" method="_on_ResumeBtn_pressed"]
+[connection signal="mouse_entered" from="PauseMenu/PauseMenuUI/PauseMenuBtns/MenuBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_MenuBtn_mouse_entered"]
+[connection signal="mouse_exited" from="PauseMenu/PauseMenuUI/PauseMenuBtns/MenuBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_MenuBtn_mouse_exited"]
+[connection signal="pressed" from="PauseMenu/PauseMenuUI/PauseMenuBtns/MenuBtn" to="PauseMenu/PauseMenuUI" method="_on_MenuBtn_pressed"]
+[connection signal="mouse_entered" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ExitBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_ExitBtn_mouse_entered"]
+[connection signal="mouse_exited" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ExitBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_ExitBtn_mouse_exited"]
+[connection signal="pressed" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ExitBtn" to="PauseMenu/PauseMenuUI" method="_on_ExitBtn_pressed"]
 [connection signal="mouse_entered" from="MainMenu/MainMenuUI/MenuBtns/PlayBtn" to="MainMenu/MainMenuUI/MenuBtns" method="_on_PlayBtn_mouse_entered"]
 [connection signal="mouse_exited" from="MainMenu/MainMenuUI/MenuBtns/PlayBtn" to="MainMenu/MainMenuUI/MenuBtns" method="_on_PlayBtn_mouse_exited"]
 [connection signal="pressed" from="MainMenu/MainMenuUI/MenuBtns/PlayBtn" to="MainMenu/MainMenuUI" method="_on_PlayBtn_pressed"]

@@ -10,9 +10,13 @@ config_version=4
 
 [application]
 
-config/name="Silver Game Jam"
+config/name="FizzBallz"
 run/main_scene="res://Scenes/TestLevel.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SceneTransition="*res://Scenes/UI/ScreenTransition.tscn"
 
 [debug]
 
