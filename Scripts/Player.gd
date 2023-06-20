@@ -21,7 +21,7 @@ var jumpCount = 2
 # BOOLEANS
 var isDead = false
 var isMoving = true
-var canSwitch = true
+var canSwitch = false
 var canDrop = false
 var isPicked = false
 var isNearPickable = false
@@ -42,6 +42,7 @@ onready var playerAnims = $PlayerAnims
 onready var inputPrompt = $InputPrompt
 onready var cratespawnPos = $Head/CrateSpawnPos
 onready var crate = preload("res://Scenes/Crate1.tscn")
+onready var currentTextures = [normalBall]
 onready var textures = [normalBall, beachBall, stoneBall]
 onready var mainMenuUI = $"../MainMenu/MainMenuUI"
 onready var pauseMenuUI = $"../PauseMenu/PauseMenuUI"

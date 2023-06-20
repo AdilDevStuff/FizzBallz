@@ -13,7 +13,7 @@ extends Control
 
 # ONREADY
 onready var menuAnims = $MenuAnims
-
+onready var creditsMenuUI = $"../../CreditsMenu/CreditsMenuUI"
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
@@ -41,6 +41,8 @@ func _on_PlayBtn_pressed():
 
 func _on_CreditsBtn_pressed():
 	menuAnims.play_backwards("Enter")
+	creditsMenuUI.visible = true
+	creditsMenuUI.creditsMenuAnims.play("Enter")
 	yield(menuAnims, "animation_finished")
 	self.visible = false
 

@@ -35,5 +35,4 @@ func updateUI():
 	if player.picked == true:
 		hud.text = "Picked Up The Object" 
 
-
 # ---------- SIGNALS ---------- #
