@@ -3,7 +3,7 @@ extends VBoxContainer
 # ---------- VARIABLES ---------- #
 
 # NORMAL
-export (float) var tweenDuration
+export (float) var tweenDuration = 0.3
 export (float) var marginRight
 export (float) var marginLeft
 export (float) var marginRightDefault
@@ -29,12 +29,9 @@ func _ready():
 
 func _process(delta):
 	if visible:
-		resumeBtnHoverLeft()
-		resumeBtnHoverRight()
-		menuBtnHoverLeft()
-		menuBtnHoverRight()
-		exitBtnHoverLeft()
-		exitBtnHoverRight()
+		resumeBtnHover(delta)
+		menuBtnHover(delta)
+		exitBtnHover(delta)
 
 func _physics_process(delta):
 	pass
@@ -44,48 +41,29 @@ func _input(event):
 
 # ---------- CUSTOM FUNCTIONS ---------- #
 
-func resumeBtnHoverLeft():
-	var tween = get_tree().create_tween()
+func resumeBtnHover(delta):
 	if resumeBtnMouseHover:
-		tween.tween_property(resumeBtn, "margin_left", marginLeft, tweenDuration)
+		resumeBtn.margin_left = lerp(resumeBtn.margin_left, marginLeft, tweenDuration)
+		resumeBtn.margin_right = lerp(resumeBtn.margin_right, marginRight, tweenDuration)
 	else:
-		tween.tween_property(resumeBtn, "margin_left", marginLeftDefault, tweenDuration)
+		resumeBtn.margin_left = lerp(resumeBtn.margin_left, marginLeftDefault, tweenDuration)
+		resumeBtn.margin_right = lerp(resumeBtn.margin_right, marginRightDefault, tweenDuration)
 
-func resumeBtnHoverRight():
-	var tween = get_tree().create_tween()
-	if resumeBtnMouseHover:
-		tween.tween_property(resumeBtn, "margin_right", marginRight, tweenDuration)
-	else:
-		tween.tween_property(resumeBtn, "margin_right", marginRightDefault, tweenDuration)
-
-func menuBtnHoverLeft():
-	var tween = get_tree().create_tween()
+func menuBtnHover(delta):
 	if menuBtnMouseHover:
-		tween.tween_property(menuBtn, "margin_left", marginLeft, tweenDuration)
+		menuBtn.margin_right = lerp(menuBtn.margin_right, marginRight, tweenDuration)
+		menuBtn.margin_left = lerp(menuBtn.margin_left, marginLeft, tweenDuration)
 	else:
-		tween.tween_property(menuBtn, "margin_left", marginLeftDefault, tweenDuration)
+		menuBtn.margin_right = lerp(menuBtn.margin_right, marginRightDefault, tweenDuration)
+		menuBtn.margin_left = lerp(menuBtn.margin_left, marginLeftDefault, tweenDuration)
 
-func menuBtnHoverRight():
-	var tween = get_tree().create_tween()
-	if menuBtnMouseHover:
-		tween.tween_property(menuBtn, "margin_right", marginRight, tweenDuration)
-	else:
-		tween.tween_property(menuBtn, "margin_right", marginRightDefault, tweenDuration)
-
-func exitBtnHoverLeft():
-	var tween = get_tree().create_tween()
+func exitBtnHover(delta):
 	if exitBtnMouseHover:
-		tween.tween_property(exitBtn, "margin_left", marginLeft, tweenDuration)
+		exitBtn.margin_left = lerp(exitBtn.margin_left, marginLeft, tweenDuration)
+		exitBtn.margin_right = lerp(exitBtn.margin_right, marginRight, tweenDuration)
 	else:
-		tween.tween_property(exitBtn, "margin_left", marginLeftDefault, tweenDuration)
-
-func exitBtnHoverRight():
-	var tween = get_tree().create_tween()
-	if exitBtnMouseHover:
-		tween.tween_property(exitBtn, "margin_right", marginRight, tweenDuration)
-	else:
-		tween.tween_property(exitBtn, "margin_right", marginRightDefault, tweenDuration)
-
+		exitBtn.margin_left = lerp(exitBtn.margin_left, marginLeftDefault, tweenDuration)
+		exitBtn.margin_right = lerp(exitBtn.margin_right, marginRightDefault, tweenDuration)
 
 # ---------- SIGNALS ---------- #
 

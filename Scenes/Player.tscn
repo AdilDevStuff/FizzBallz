@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Characters/Sprites/Player (Stone).png" type="Texture" id=1]
 [ext_resource path="res://Assets/Characters/Sprites/Player (BeachBall).png" type="Texture" id=2]
@@ -7,6 +7,34 @@
 [ext_resource path="res://Assets/Fonts/BebasNueueFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/UserInterfacePrompts/LMB Input Prompt.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Environment/Props/Crate/Crate.png" type="Texture" id=7]
+[ext_resource path="res://Assets/SFX/Player/BallDead.wav" type="AudioStream" id=8]
+
+[sub_resource type="Animation" id=14]
+resource_name = "CrateJump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Pickable:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.85, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/Pickable:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -30 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Death"
@@ -23,6 +51,56 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0.6, 0.6 ), Vector2( 0.7, 0.7 ), Vector2( 0, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("DeathParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("SFX/DeathFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [  ],
+"times": PoolRealArray(  )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SFX/DeathFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.4, 0.75 ), Vector2( 0.6, 0.6 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -38,12 +116,136 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0.6, 0.6 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("DeathParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head/Pickable:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Head/Pickable:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SFX/DeathFX:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Switch"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.101, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.65, 0.65 ), Vector2( 0.65, 0.65 ), Vector2( 0, 0 ), Vector2( 0.6, 0.6 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "scrollToNextTexture"
+} ]
+}
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 31.0161
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 32.3883
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 0.708008, 0.708008, 0.708008, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Gradient" id=11]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.625 )
+colors = PoolColorArray( 0.293945, 0.293945, 0.293945, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.14645, 0.659509 ), -0.115201, -0.115201, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+lifetime_randomness = 0.2
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 70.0
+flatness = 1.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.4
+angular_velocity = 30.0
+angular_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 1.0
+radial_accel = 20.0
+radial_accel_random = 0.83
+damping = 10.0
+damping_random = 1.0
+angle = 50.0
+angle_random = 0.4
+scale = 30.0
+scale_random = 0.6
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 12 )
+color_initial_ramp = SubResource( 10 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 4 )
@@ -53,8 +255,11 @@ stoneBall = ExtResource( 1 )
 pickableTiltAngle = 400.0
 
 [node name="PlayerAnims" type="AnimationPlayer" parent="."]
+anims/CrateJump = SubResource( 14 )
 anims/Death = SubResource( 4 )
+anims/Jump = SubResource( 13 )
 anims/RESET = SubResource( 5 )
+anims/Switch = SubResource( 15 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.6, 0.6 )
@@ -70,6 +275,7 @@ offset = Vector2( 0, -80 )
 position = Vector2( 90, 0 )
 
 [node name="InputPrompt" type="Node2D" parent="."]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="InputPrompt"]
 margin_left = -38.0
@@ -101,6 +307,22 @@ cast_to = Vector2( 100, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 shape = SubResource( 3 )
+
+[node name="DeathParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.4
+process_material = SubResource( 8 )
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="DeathFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 8 )
+volume_db = -8.0
+pitch_scale = 1.2
 
 [connection signal="animation_finished" from="PlayerAnims" to="." method="_on_PlayerAnims_animation_finished"]
 [connection signal="body_entered" from="Collision" to="." method="_on_Collision_body_entered"]

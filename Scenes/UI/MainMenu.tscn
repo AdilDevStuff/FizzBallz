@@ -23,7 +23,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=69]
 shader = SubResource( 68 )
-shader_param/speed = 0.01
+shader_param/speed = 0.02
 shader_param/direction = Vector2( -1, -1 )
 
 [sub_resource type="Animation" id=37]

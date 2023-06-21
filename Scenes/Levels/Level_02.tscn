@@ -403,7 +403,7 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 1/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=54]
-extents = Vector2( 71, 105 )
+extents = Vector2( 217, 623 )
 
 [sub_resource type="Gradient" id=21]
 offsets = PoolRealArray( 0, 0.528986 )
@@ -470,7 +470,7 @@ margin_bottom = 186.0
 rect_pivot_offset = Vector2( 119, 118 )
 custom_constants/separation = 10
 script = ExtResource( 18 )
-tweenDuration = 0.1
+tweenDuration = 200.0
 marginRight = 274.0
 marginLeft = -20.0
 marginRightDefault = 254.0
@@ -692,6 +692,17 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelFinish"]
 shape = SubResource( 54 )
 
+[node name="CanSwitch" type="Area2D" parent="."]
+position = Vector2( 1890, -99 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="CanSwitch"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanSwitch"]
+shape = SubResource( 54 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 20 )
 
@@ -705,3 +716,4 @@ environment = SubResource( 20 )
 [connection signal="mouse_exited" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ExitBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_ExitBtn_mouse_exited"]
 [connection signal="pressed" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ExitBtn" to="PauseMenu/PauseMenuUI" method="_on_ExitBtn_pressed"]
 [connection signal="body_entered" from="LevelFinish" to="LevelManager" method="_on_LevelFinish_body_entered"]
+[connection signal="body_entered" from="CanSwitch" to="LevelManager" method="_on_CanSwitch_body_entered"]

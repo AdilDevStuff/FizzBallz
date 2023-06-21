@@ -20,7 +20,7 @@ var jumpCount = 2
 
 # BOOLEANS
 var isDead = false
-var isMoving = true
+var isMoving = false
 var canSwitch = true
 var canDrop = false
 var isPicked = false
@@ -41,9 +41,9 @@ onready var pickable = $Head/Pickable
 onready var playerAnims = $PlayerAnims
 onready var inputPrompt = $InputPrompt
 onready var cratespawnPos = $Head/CrateSpawnPos
+onready var pauseMenuUI = $"../PauseMenu/PauseMenuUI"
 onready var crate = preload("res://Scenes/Crate1.tscn")
 onready var textures = [normalBall, beachBall, stoneBall]
-onready var pauseMenuUI = $"../PauseMenu/PauseMenuUI"
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
@@ -76,7 +76,9 @@ func movement(delta):
 		jumpCount = 2
 		
 	if Input.is_action_just_pressed("Jump") and jumpCount > 0:
-		jumpAnimation()
+		crateJumpAnimations()
+		playerAnims.play("Jump")
+		SoundManager.jumpSFX.play()
 		velocity.y = -jumpForce
 		jumpCount -= 1
 		
@@ -105,12 +107,9 @@ func getInput(horizontalAxis: float, delta):
 		pickable.rotation_degrees = lerp(pickable.rotation_degrees, deg2rad(0), 0.2)
 		isMoving = false
 
-func jumpAnimation():
+func crateJumpAnimations():
 	crateScaleTween()
 	cratePositionTween()
-	var tween = get_tree().create_tween()
-	tween.tween_property(sprite, "scale", stretchedScale, 0.1)
-	tween.tween_property(sprite, "scale", defaultScale, 0.2)
 
 func cratePositionTween():
 	var tween = get_tree().create_tween()
@@ -122,18 +121,10 @@ func crateScaleTween():
 	tween.tween_property(pickable, "scale", Vector2(0.85,1.1), 0.12)
 	tween.tween_property(pickable, "scale", Vector2(1,1), 0.12)
 
-func switchAnimation():
-	var tween = get_tree().create_tween()
-	tween.tween_property(sprite, "scale", Vector2(0.65,0.65), 0.1)
-	tween.tween_property(sprite, "scale", Vector2(0,0), 0.1)
-	tween.tween_property(sprite, "scale", defaultScale, 0.1)
-	yield (tween, "step_finished")
-	scrollToNextTexture()
-
 func characterSwitch():
 	if canSwitch:
 		if Input.is_action_just_pressed("Switch"):
-			switchAnimation()
+			playerAnims.play("Switch")
 
 func characterAbilities():
 	match index:
@@ -207,8 +198,7 @@ func _on_Collision_body_entered(body):
 	if body.is_in_group("Traps") and index != 2:
 		isDead = true
 		playerAnims.play("Death")
-		SceneTransition.reloadScene()
 
 func _on_PlayerAnims_animation_finished(anim_name):
 	if anim_name == "Death":
-		get_tree().reload_current_scene()
+		SceneTransition.reloadScene()
