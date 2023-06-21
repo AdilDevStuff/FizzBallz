@@ -3,7 +3,9 @@ extends VBoxContainer
 # ---------- VARIABLES ---------- #
 
 # NORMAL
-
+export (float) var duration
+export (float) var marginRight
+export (float) var marginRightDefault
 
 # BOOLEANS
 var playBtnMouseHover = false
@@ -26,10 +28,9 @@ func _ready():
 	pass
 
 func _process(delta):
-	if visible:
-		playBtnHover()
-		creditsBtnHover()
-		exitBtnHover()
+	playBtnHover(delta)
+	creditsBtnHover(delta)
+	exitBtnHover(delta)
 
 func _physics_process(delta):
 	pass
@@ -39,26 +40,23 @@ func _input(event):
 
 # ---------- CUSTOM FUNCTIONS ---------- #
 
-func playBtnHover():
-	var tween = get_tree().create_tween()
+func playBtnHover(delta):
 	if playBtnMouseHover:
-		tween.tween_property(playBtn, "margin_right", 260, 0.2)
+		playBtn.margin_right = lerp(playBtn.margin_right, marginRight, duration * delta)
 	else:
-		tween.tween_property(playBtn, "margin_right", 239, 0.2)
+		playBtn.margin_right = lerp(playBtn.margin_right, marginRightDefault, duration * delta)
 
-func creditsBtnHover():
-	var tween = get_tree().create_tween()
+func creditsBtnHover(delta):
 	if creditsBtnMouseHover:
-		tween.tween_property(creditsBtn, "margin_right", 260, 0.2)
+		creditsBtn.margin_right = lerp(creditsBtn.margin_right, marginRight, duration * delta)
 	else:
-		tween.tween_property(creditsBtn, "margin_right", 239, 0.2)
+		creditsBtn.margin_right = lerp(creditsBtn.margin_right, marginRightDefault, duration * delta)
 
-func exitBtnHover():
-	var tween = get_tree().create_tween()
+func exitBtnHover(delta):
 	if exitBtnMouseHover:
-		tween.tween_property(exitBtn, "margin_right", 260, 0.2)
+		exitBtn.margin_right = lerp(exitBtn.margin_right, marginRight, duration * delta)
 	else:
-		tween.tween_property(exitBtn, "margin_right", 239, 0.2)
+		exitBtn.margin_right = lerp(exitBtn.margin_right, marginRightDefault, duration * delta)
 
 # ---------- SIGNALS ---------- #
 

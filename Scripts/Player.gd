@@ -21,7 +21,7 @@ var jumpCount = 2
 # BOOLEANS
 var isDead = false
 var isMoving = true
-var canSwitch = false
+var canSwitch = true
 var canDrop = false
 var isPicked = false
 var isNearPickable = false
@@ -42,9 +42,7 @@ onready var playerAnims = $PlayerAnims
 onready var inputPrompt = $InputPrompt
 onready var cratespawnPos = $Head/CrateSpawnPos
 onready var crate = preload("res://Scenes/Crate1.tscn")
-onready var currentTextures = [normalBall]
 onready var textures = [normalBall, beachBall, stoneBall]
-onready var mainMenuUI = $"../MainMenu/MainMenuUI"
 onready var pauseMenuUI = $"../PauseMenu/PauseMenuUI"
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
@@ -64,7 +62,6 @@ func _process(delta):
 func _physics_process(delta):
 	if !isDead and !pauseMenuUI.visible:
 		movement(delta)
-	if !isDead and !mainMenuUI.visible and !pauseMenuUI.visible:
 		characterSwitch()
 		characterAbilities()
 		pickupCastCheck()
@@ -77,14 +74,14 @@ func movement(delta):
 		velocity.y += gravity
 	else:
 		jumpCount = 2
-	if !mainMenuUI.visible:
-		if Input.is_action_just_pressed("Jump") and jumpCount > 0:
-			jumpAnimation()
-			velocity.y = -jumpForce
-			jumpCount -= 1
 		
-		var horizontalAxis = Input.get_axis("Left", "Right")
-		getInput(horizontalAxis, delta)
+	if Input.is_action_just_pressed("Jump") and jumpCount > 0:
+		jumpAnimation()
+		velocity.y = -jumpForce
+		jumpCount -= 1
+		
+	var horizontalAxis = Input.get_axis("Left", "Right")
+	getInput(horizontalAxis, delta)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 

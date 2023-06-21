@@ -18,7 +18,7 @@ var backBtnHover = false
 
 # ONREADY
 onready var creditsMenuAnims = $MenuAnims
-onready var mainMenuUI = $"../../MainMenu/MainMenuUI"
+onready var mainMenuUI = get_parent().get_node("MainMenuUI")
 onready var backBtn = $BackBtn
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
@@ -27,8 +27,8 @@ func _ready():
 	visible = false
 
 func _process(delta):
-	backBtnMarginLeftHover()
-	backBtnMarginRightHover()
+	backBtnMarginLeftHover(delta)
+	backBtnMarginRightHover(delta)
 
 func _physics_process(delta):
 	pass
@@ -38,21 +38,19 @@ func _input(event):
 
 # ---------- CUSTOM FUNCTIONS ---------- #
 
-func backBtnMarginLeftHover():
+func backBtnMarginLeftHover(delta):
 	if !creditsMenuAnims.is_playing():
-		var tween = get_tree().create_tween()
 		if backBtnHover:
-			tween.tween_property(backBtn, "margin_left", marginLeft, tweenDuration)
+			backBtn.margin_left = lerp(backBtn.margin_left, marginLeft, tweenDuration * delta)
 		else:
-			tween.tween_property(backBtn, "margin_left", marginLeftDefault, tweenDuration)
+			backBtn.margin_left = lerp(backBtn.margin_left, marginLeftDefault, tweenDuration * delta)
 
-func backBtnMarginRightHover():
+func backBtnMarginRightHover(delta):
 	if !creditsMenuAnims.is_playing():
-		var tween = get_tree().create_tween()
 		if backBtnHover:
-			tween.tween_property(backBtn, "margin_right", marginRight, tweenDuration)
+			backBtn.margin_right = lerp(backBtn.margin_right, marginRight, tweenDuration * delta)
 		else:
-			tween.tween_property(backBtn, "margin_right", marginRightDefault, tweenDuration)
+			backBtn.margin_right = lerp(backBtn.margin_right, marginRightDefault, tweenDuration * delta)
 
 # ---------- SIGNALS ---------- #
 
@@ -61,10 +59,9 @@ func _on_RichTextLabel_meta_clicked(meta):
 
 func _on_BackBtn_pressed():
 	creditsMenuAnims.play_backwards("Enter")
-	mainMenuUI.visible = true
-	mainMenuUI.menuAnims.play("Enter")
 	yield(creditsMenuAnims, "animation_finished")
-	self.visible = false
+	mainMenuUI.menuAnims.play("Enter")
+	visible = false
 
 func _on_BackBtn_mouse_entered():
 	backBtnHover = true

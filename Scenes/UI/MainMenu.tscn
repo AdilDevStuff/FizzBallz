@@ -1,0 +1,585 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/UserInterfacePrompts/UIButtonDesign.tres" type="StyleBox" id=1]
+[ext_resource path="res://Scripts/MenuBtns.gd" type="Script" id=2]
+[ext_resource path="res://Assets/UI Textures/FizzBallz Game Title.png" type="Texture" id=3]
+[ext_resource path="res://Assets/UI Textures/Characters.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Fonts/LuckiestGuyFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Scripts/MainMenuUI.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/CreditsMenuUI.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Fonts/LuckiestGuy.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/UI Textures/FaceBackground.png" type="Texture" id=9]
+
+[sub_resource type="Shader" id=68]
+code = "shader_type canvas_item;
+
+uniform float speed = 0.08;
+uniform vec2 direction = vec2(1,0);
+
+void fragment()
+{
+	COLOR = texture(TEXTURE, UV + speed * direction * TIME);
+}"
+
+[sub_resource type="ShaderMaterial" id=69]
+shader = SubResource( 68 )
+shader_param/speed = 0.02
+shader_param/direction = Vector2( 0, -1 )
+
+[sub_resource type="Animation" id=37]
+resource_name = "Enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameTitle:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuBtns:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BG:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.313726 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CharactersLogo:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.00512079 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=38]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameTitle:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuBtns:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BG:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BG:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.313726 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CharactersLogo:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="StyleBoxFlat" id=61]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+
+[sub_resource type="DynamicFont" id=62]
+size = 20
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=63]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=64]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id=65]
+bg_color = Color( 0.113725, 0.439216, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 10
+
+[sub_resource type="Animation" id=66]
+resource_name = "Enter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("BG:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.313726 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharactersLogo:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Background:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BackBtn:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.00960148 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=67]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BG:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BG:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.313726 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharactersLogo:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Background:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BackBtn:rect_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="MainMenu" type="CanvasLayer"]
+
+[node name="MainMenuUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 512, 300 )
+script = ExtResource( 6 )
+
+[node name="ScrollingBG" type="TextureRect" parent="MainMenuUI"]
+material = SubResource( 69 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -53.0
+margin_right = 649.0
+margin_bottom = 371.0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="BG" type="ColorRect" parent="MainMenuUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 512, 300 )
+color = Color( 0, 0, 0, 0.313726 )
+
+[node name="GameTitle" type="TextureRect" parent="MainMenuUI"]
+margin_left = 28.0
+margin_top = 86.0
+margin_right = 305.0
+margin_bottom = 281.0
+rect_pivot_offset = Vector2( 138, 97 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="MenuBtns" type="VBoxContainer" parent="MainMenuUI"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 48.0
+margin_top = 18.0
+margin_right = 287.0
+margin_bottom = 239.0
+rect_pivot_offset = Vector2( 119, 118 )
+custom_constants/separation = 10
+script = ExtResource( 2 )
+duration = 12.0
+marginRight = 260.0
+marginRightDefault = 239.0
+
+[node name="PlayBtn" type="Button" parent="MainMenuUI/MenuBtns"]
+margin_right = 239.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 239, 69 )
+rect_pivot_offset = Vector2( 120, 36 )
+focus_mode = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "Start"
+align = 0
+icon_align = 1
+
+[node name="CreditsBtn" type="Button" parent="MainMenuUI/MenuBtns"]
+margin_top = 79.0
+margin_right = 239.0
+margin_bottom = 145.0
+rect_min_size = Vector2( 200, 60 )
+rect_pivot_offset = Vector2( 120, 36 )
+focus_mode = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "CREDITS"
+align = 0
+icon_align = 1
+
+[node name="ExitBtn" type="Button" parent="MainMenuUI/MenuBtns"]
+margin_top = 155.0
+margin_right = 239.0
+margin_bottom = 221.0
+rect_min_size = Vector2( 200, 60 )
+rect_pivot_offset = Vector2( 120, 36 )
+focus_mode = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "EXIT"
+align = 0
+icon_align = 1
+
+[node name="CharactersLogo" type="TextureRect" parent="MainMenuUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -195.0
+margin_top = -171.0
+margin_right = -32.0
+margin_bottom = -24.0
+rect_pivot_offset = Vector2( 81, 73 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="MenuAnims" type="AnimationPlayer" parent="MainMenuUI"]
+autoplay = "Enter"
+anims/Enter = SubResource( 37 )
+anims/RESET = SubResource( 38 )
+
+[node name="CreditsMenuUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 512, 300 )
+script = ExtResource( 7 )
+tweenDuration = 12.0
+
+[node name="BG" type="ColorRect" parent="CreditsMenuUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 512, 300 )
+color = Color( 0, 0, 0, 0.313726 )
+
+[node name="Background" type="Panel" parent="CreditsMenuUI"]
+margin_left = 157.0
+margin_top = 65.0
+margin_right = 867.0
+margin_bottom = 543.0
+rect_min_size = Vector2( 710, 478 )
+rect_pivot_offset = Vector2( 355, 239 )
+custom_styles/panel = SubResource( 61 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsMenuUI/Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -323.0
+margin_top = -177.0
+margin_right = 323.0
+margin_bottom = 225.0
+custom_fonts/normal_font = SubResource( 62 )
+bbcode_enabled = true
+bbcode_text = "[center]
+SILVER'S JAM 2023
+THIS GAME IS MADE FOR SILVER'S JAM 2023 BASED ON THE THEME \"FUSION\".
+
+Assets:
+Game Art: Adil
+Sound FX: Adil
+Sound Track: Adil
+
+Some assets are from[color=black][url=https://kenney.nl/] Kenney [/url][/color], which i edited according to my needs.
+
+
+Thanks for playing this game!
+Please rate and give feedback!
+[/center]"
+text = "
+SILVER'S JAM 2023
+THIS GAME IS MADE FOR SILVER'S JAM 2023 BASED ON THE THEME \"FUSION\".
+
+Assets:
+Game Art: Adil
+Sound FX: Adil
+Sound Track: Adil
+
+Some assets are from Kenney , which i edited according to my needs.
+
+
+Thanks for playing this game!
+Please rate and give feedback!
+"
+
+[node name="BackBtn" type="Button" parent="CreditsMenuUI"]
+margin_left = 649.0
+margin_top = 504.0
+margin_right = 819.0
+margin_bottom = 570.0
+rect_pivot_offset = Vector2( 85, 33 )
+focus_mode = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = SubResource( 63 )
+custom_styles/pressed = SubResource( 64 )
+custom_styles/normal = SubResource( 65 )
+enabled_focus_mode = 0
+text = "Back"
+icon_align = 1
+
+[node name="CharactersLogo" type="TextureRect" parent="CreditsMenuUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -913.0
+margin_top = -580.0
+margin_right = -799.0
+margin_bottom = -477.0
+rect_pivot_offset = Vector2( 81, 73 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="MenuAnims" type="AnimationPlayer" parent="CreditsMenuUI"]
+anims/Enter = SubResource( 66 )
+anims/RESET = SubResource( 67 )
+
+[connection signal="mouse_entered" from="MainMenuUI/MenuBtns/PlayBtn" to="MainMenuUI/MenuBtns" method="_on_PlayBtn_mouse_entered"]
+[connection signal="mouse_exited" from="MainMenuUI/MenuBtns/PlayBtn" to="MainMenuUI/MenuBtns" method="_on_PlayBtn_mouse_exited"]
+[connection signal="pressed" from="MainMenuUI/MenuBtns/PlayBtn" to="MainMenuUI" method="_on_PlayBtn_pressed"]
+[connection signal="mouse_entered" from="MainMenuUI/MenuBtns/CreditsBtn" to="MainMenuUI/MenuBtns" method="_on_CreditsBtn_mouse_entered"]
+[connection signal="mouse_exited" from="MainMenuUI/MenuBtns/CreditsBtn" to="MainMenuUI/MenuBtns" method="_on_CreditsBtn_mouse_exited"]
+[connection signal="pressed" from="MainMenuUI/MenuBtns/CreditsBtn" to="MainMenuUI" method="_on_CreditsBtn_pressed"]
+[connection signal="mouse_entered" from="MainMenuUI/MenuBtns/ExitBtn" to="MainMenuUI/MenuBtns" method="_on_ExitBtn_mouse_entered"]
+[connection signal="mouse_exited" from="MainMenuUI/MenuBtns/ExitBtn" to="MainMenuUI/MenuBtns" method="_on_ExitBtn_mouse_exited"]
+[connection signal="pressed" from="MainMenuUI/MenuBtns/ExitBtn" to="MainMenuUI" method="_on_ExitBtn_pressed"]
+[connection signal="meta_clicked" from="CreditsMenuUI/Background/RichTextLabel" to="CreditsMenuUI" method="_on_RichTextLabel_meta_clicked"]
+[connection signal="mouse_entered" from="CreditsMenuUI/BackBtn" to="CreditsMenuUI" method="_on_BackBtn_mouse_entered"]
+[connection signal="mouse_exited" from="CreditsMenuUI/BackBtn" to="CreditsMenuUI" method="_on_BackBtn_mouse_exited"]
+[connection signal="pressed" from="CreditsMenuUI/BackBtn" to="CreditsMenuUI" method="_on_BackBtn_pressed"]

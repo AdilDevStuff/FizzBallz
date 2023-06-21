@@ -13,7 +13,6 @@ extends Control
 
 # ONREADY
 onready var pauseMenuAnims = $PauseMenuAnims
-onready var mainMenuUI = $"../../MainMenu/MainMenuUI"
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
@@ -21,7 +20,7 @@ func _ready():
 	visible = false
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel") and !mainMenuUI.visible and !visible and !pauseMenuAnims.is_playing():
+	if Input.is_action_just_pressed("ui_cancel") and !visible and !pauseMenuAnims.is_playing():
 		pauseMenuAnims.play("Enter")
 
 func _physics_process(delta):
@@ -42,7 +41,7 @@ func _on_ResumeBtn_pressed():
 
 func _on_MenuBtn_pressed():
 	pauseMenuAnims.play_backwards("Enter")
-	SceneTransition.reloadScene()
+	SceneTransition.changeScene("res://Scenes/UI/MainMenu.tscn")
 
 func _on_ExitBtn_pressed():
 	pauseMenuAnims.play_backwards("Enter")

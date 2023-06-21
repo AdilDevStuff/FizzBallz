@@ -13,12 +13,12 @@ extends Control
 
 # ONREADY
 onready var menuAnims = $MenuAnims
-onready var creditsMenuUI = $"../../CreditsMenu/CreditsMenuUI"
+onready var creditsMenuUI = get_parent().get_node("CreditsMenuUI")
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
 func _ready():
-	visible = true
+	pass
 
 func _process(delta):
 	pass
@@ -36,15 +36,12 @@ func _input(event):
 
 func _on_PlayBtn_pressed():
 	menuAnims.play_backwards("Enter")
-	yield(menuAnims, "animation_finished")
-	self.visible = false
+	SceneTransition.changeScene("res://Scenes/Levels/Level_01.tscn")
 
 func _on_CreditsBtn_pressed():
 	menuAnims.play_backwards("Enter")
-	creditsMenuUI.visible = true
-	creditsMenuUI.creditsMenuAnims.play("Enter")
 	yield(menuAnims, "animation_finished")
-	self.visible = false
+	creditsMenuUI.creditsMenuAnims.play("Enter")
 
 func _on_ExitBtn_pressed():
 	menuAnims.play_backwards("Enter")

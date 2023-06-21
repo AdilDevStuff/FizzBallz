@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Assets/Tileset/Spikes.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -13,17 +13,11 @@
 [ext_resource path="res://Scripts/ParallaxBG.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Tileset/Stonebrick Texture.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Fonts/LuckiestGuyFont.tres" type="DynamicFont" id=13]
-[ext_resource path="res://Assets/UserInterfacePrompts/UIButtonDesign.tres" type="StyleBox" id=14]
-[ext_resource path="res://Scripts/MenuBtns.gd" type="Script" id=15]
-[ext_resource path="res://Scripts/MainMenuUI.gd" type="Script" id=16]
 [ext_resource path="res://Assets/UI Textures/Characters.png" type="Texture" id=17]
 [ext_resource path="res://Scripts/PauseMenuBtns.gd" type="Script" id=18]
 [ext_resource path="res://Assets/Fonts/LuckiestGuy.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://Scripts/PauseMenuUI.gd" type="Script" id=20]
-[ext_resource path="res://Assets/UI Textures/FizzBallz Game Title.png" type="Texture" id=21]
 [ext_resource path="res://Scripts/CreditsMenuUI.gd" type="Script" id=22]
-[ext_resource path="res://Scenes/BeachBallFuse.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Scenes/StoneBallFuse.tscn" type="PackedScene" id=24]
 
 [sub_resource type="Shader" id=35]
 code = "shader_type canvas_item;
@@ -443,145 +437,6 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("BackBtn:rect_scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=48]
-resource_name = "Enter"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("GameTitle:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("MenuBtns:rect_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Blur:material:shader_param/lod")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ 0.0, 1.8 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BG:color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.313726 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("CharactersLogo:rect_scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( -2, -2, -2 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=49]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("GameTitle:rect_scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("MenuBtns:rect_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Blur:material:shader_param/lod")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.8 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("BG:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("BG:color")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0.313726 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("CharactersLogo:rect_scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -1081,121 +936,6 @@ expand = true
 anims/Enter = SubResource( 52 )
 anims/RESET = SubResource( 53 )
 
-[node name="MainMenu" type="CanvasLayer" parent="."]
-
-[node name="MainMenuUI" type="Control" parent="MainMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 512, 300 )
-script = ExtResource( 16 )
-
-[node name="Blur" type="ColorRect" parent="MainMenu/MainMenuUI"]
-material = SubResource( 36 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 512, 300 )
-color = Color( 0, 0, 0, 1 )
-
-[node name="BG" type="ColorRect" parent="MainMenu/MainMenuUI"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 512, 300 )
-color = Color( 0, 0, 0, 0.313726 )
-
-[node name="GameTitle" type="TextureRect" parent="MainMenu/MainMenuUI"]
-margin_left = 28.0
-margin_top = 86.0
-margin_right = 305.0
-margin_bottom = 281.0
-rect_pivot_offset = Vector2( 138, 97 )
-texture = ExtResource( 21 )
-expand = true
-
-[node name="MenuBtns" type="VBoxContainer" parent="MainMenu/MainMenuUI"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 48.0
-margin_top = 18.0
-margin_right = 287.0
-margin_bottom = 239.0
-rect_pivot_offset = Vector2( 119, 118 )
-custom_constants/separation = 10
-script = ExtResource( 15 )
-
-[node name="PlayBtn" type="Button" parent="MainMenu/MainMenuUI/MenuBtns"]
-margin_right = 239.0
-margin_bottom = 69.0
-rect_min_size = Vector2( 239, 69 )
-rect_pivot_offset = Vector2( 120, 36 )
-focus_mode = 0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 13 )
-custom_styles/hover = ExtResource( 14 )
-custom_styles/pressed = ExtResource( 14 )
-custom_styles/normal = ExtResource( 14 )
-enabled_focus_mode = 0
-text = "Start"
-align = 0
-icon_align = 1
-
-[node name="CreditsBtn" type="Button" parent="MainMenu/MainMenuUI/MenuBtns"]
-margin_top = 79.0
-margin_right = 239.0
-margin_bottom = 145.0
-rect_min_size = Vector2( 200, 60 )
-rect_pivot_offset = Vector2( 120, 36 )
-focus_mode = 0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 13 )
-custom_styles/hover = ExtResource( 14 )
-custom_styles/pressed = ExtResource( 14 )
-custom_styles/normal = ExtResource( 14 )
-enabled_focus_mode = 0
-text = "CREDITS"
-align = 0
-icon_align = 1
-
-[node name="ExitBtn" type="Button" parent="MainMenu/MainMenuUI/MenuBtns"]
-margin_top = 155.0
-margin_right = 239.0
-margin_bottom = 221.0
-rect_min_size = Vector2( 200, 60 )
-rect_pivot_offset = Vector2( 120, 36 )
-focus_mode = 0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 13 )
-custom_styles/hover = ExtResource( 14 )
-custom_styles/pressed = ExtResource( 14 )
-custom_styles/normal = ExtResource( 14 )
-enabled_focus_mode = 0
-text = "EXIT"
-align = 0
-icon_align = 1
-
-[node name="CharactersLogo" type="TextureRect" parent="MainMenu/MainMenuUI"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -195.0
-margin_top = -171.0
-margin_right = -32.0
-margin_bottom = -24.0
-rect_pivot_offset = Vector2( 81, 73 )
-texture = ExtResource( 17 )
-expand = true
-
-[node name="MenuAnims" type="AnimationPlayer" parent="MainMenu/MainMenuUI"]
-autoplay = "Enter"
-anims/Enter = SubResource( 48 )
-anims/RESET = SubResource( 49 )
-
 [node name="Background" type="Node2D" parent="."]
 __meta__ = {
 "_edit_group_": true,
@@ -1300,12 +1040,6 @@ position = Vector2( 3169, 540 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 20 )
 
-[node name="BeachBallFuse" parent="." instance=ExtResource( 23 )]
-position = Vector2( 836, 624 )
-
-[node name="StoneBallFuse" parent="." instance=ExtResource( 24 )]
-position = Vector2( 1317, 646 )
-
 [connection signal="mouse_entered" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ResumeBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_ResumeBtn_mouse_entered"]
 [connection signal="mouse_exited" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ResumeBtn" to="PauseMenu/PauseMenuUI/PauseMenuBtns" method="_on_ResumeBtn_mouse_exited"]
 [connection signal="pressed" from="PauseMenu/PauseMenuUI/PauseMenuBtns/ResumeBtn" to="PauseMenu/PauseMenuUI" method="_on_ResumeBtn_pressed"]
@@ -1319,12 +1053,3 @@ position = Vector2( 1317, 646 )
 [connection signal="mouse_entered" from="CreditsMenu/CreditsMenuUI/BackBtn" to="CreditsMenu/CreditsMenuUI" method="_on_BackBtn_mouse_entered"]
 [connection signal="mouse_exited" from="CreditsMenu/CreditsMenuUI/BackBtn" to="CreditsMenu/CreditsMenuUI" method="_on_BackBtn_mouse_exited"]
 [connection signal="pressed" from="CreditsMenu/CreditsMenuUI/BackBtn" to="CreditsMenu/CreditsMenuUI" method="_on_BackBtn_pressed"]
-[connection signal="mouse_entered" from="MainMenu/MainMenuUI/MenuBtns/PlayBtn" to="MainMenu/MainMenuUI/MenuBtns" method="_on_PlayBtn_mouse_entered"]
-[connection signal="mouse_exited" from="MainMenu/MainMenuUI/MenuBtns/PlayBtn" to="MainMenu/MainMenuUI/MenuBtns" method="_on_PlayBtn_mouse_exited"]
-[connection signal="pressed" from="MainMenu/MainMenuUI/MenuBtns/PlayBtn" to="MainMenu/MainMenuUI" method="_on_PlayBtn_pressed"]
-[connection signal="mouse_entered" from="MainMenu/MainMenuUI/MenuBtns/CreditsBtn" to="MainMenu/MainMenuUI/MenuBtns" method="_on_CreditsBtn_mouse_entered"]
-[connection signal="mouse_exited" from="MainMenu/MainMenuUI/MenuBtns/CreditsBtn" to="MainMenu/MainMenuUI/MenuBtns" method="_on_CreditsBtn_mouse_exited"]
-[connection signal="pressed" from="MainMenu/MainMenuUI/MenuBtns/CreditsBtn" to="MainMenu/MainMenuUI" method="_on_CreditsBtn_pressed"]
-[connection signal="mouse_entered" from="MainMenu/MainMenuUI/MenuBtns/ExitBtn" to="MainMenu/MainMenuUI/MenuBtns" method="_on_ExitBtn_mouse_entered"]
-[connection signal="mouse_exited" from="MainMenu/MainMenuUI/MenuBtns/ExitBtn" to="MainMenu/MainMenuUI/MenuBtns" method="_on_ExitBtn_mouse_exited"]
-[connection signal="pressed" from="MainMenu/MainMenuUI/MenuBtns/ExitBtn" to="MainMenu/MainMenuUI" method="_on_ExitBtn_pressed"]
