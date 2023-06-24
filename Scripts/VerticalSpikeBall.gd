@@ -1,4 +1,5 @@
-extends Node
+extends Path2D
+class_name spikeBall
 
 # ---------- VARIABLES ---------- #
 
@@ -13,12 +14,7 @@ extends Node
 
 
 # ONREADY
-onready var jumpSFX = $JumpSfx
-onready var characterSwitchSFX = $CharacterSwitchSFX
-onready var UIHoverSFX = $UIHoverSFX
-onready var UIClickSFX = $UIClickSFX
-onready var fusionCrystalSFX = $FusionCrystalSFX
-onready var gameplayTrack = $GameplayTrack
+onready var spikeBall = $PathFollow2D/SpikeBall
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
@@ -26,7 +22,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	pass
+	spikeBall.rotation_degrees += 4
 
 func _physics_process(delta):
 	pass
@@ -39,3 +35,8 @@ func _input(event):
 
 
 # ---------- SIGNALS ---------- #
+
+func _on_SpikeBall_body_entered(body):
+	if body.name == "Player":
+		body.isDead = true
+		body.playerAnims.play("Death")

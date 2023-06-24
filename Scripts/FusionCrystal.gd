@@ -1,4 +1,4 @@
-extends Node
+extends Area2D
 
 # ---------- VARIABLES ---------- #
 
@@ -13,12 +13,7 @@ extends Node
 
 
 # ONREADY
-onready var jumpSFX = $JumpSfx
-onready var characterSwitchSFX = $CharacterSwitchSFX
-onready var UIHoverSFX = $UIHoverSFX
-onready var UIClickSFX = $UIClickSFX
-onready var fusionCrystalSFX = $FusionCrystalSFX
-onready var gameplayTrack = $GameplayTrack
+onready var animations = $Animations
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
@@ -39,3 +34,11 @@ func _input(event):
 
 
 # ---------- SIGNALS ---------- #
+
+func _on_FusionCrystal_body_entered(body):
+	if body.name == "Player":
+		get_tree().call_group("GameUI", "addCrystal")
+		animations.play("Collected")
+		SoundManager.fusionCrystalSFX.play()
+		yield(animations, "animation_finished")
+		queue_free()

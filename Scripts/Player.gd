@@ -48,6 +48,7 @@ onready var textures = [normalBall, beachBall, stoneBall]
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
 func _ready():
+	SoundManager.gameplayTrack.play()
 	inputPrompt.visible = false
 	pickCast.cast_to.x = pickupCastLength
 	cratespawnPos.position = pickupDropPosition
@@ -77,8 +78,8 @@ func movement(delta):
 		
 	if Input.is_action_just_pressed("Jump") and jumpCount > 0:
 		crateJumpAnimations()
-		playerAnims.play("Jump")
 		SoundManager.jumpSFX.play()
+		playerAnims.play("Jump")
 		velocity.y = -jumpForce
 		jumpCount -= 1
 		
@@ -124,6 +125,7 @@ func crateScaleTween():
 func characterSwitch():
 	if canSwitch:
 		if Input.is_action_just_pressed("Switch"):
+			SoundManager.characterSwitchSFX.play()
 			playerAnims.play("Switch")
 
 func characterAbilities():
@@ -198,6 +200,11 @@ func _on_Collision_body_entered(body):
 	if body.is_in_group("Traps") and index != 2:
 		isDead = true
 		playerAnims.play("Death")
+		SoundManager.gameplayTrack.stop()
+		
+
+func _on_Collision_area_entered(area):
+	pass
 
 func _on_PlayerAnims_animation_finished(anim_name):
 	if anim_name == "Death":

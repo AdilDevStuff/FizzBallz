@@ -62,12 +62,15 @@ func exitBtnHover(delta):
 
 # MOUSE ENTERED
 func _on_PlayBtn_mouse_entered():
+	SoundManager.UIHoverSFX.play()
 	playBtnMouseHover = true
 
 func _on_CreditsBtn_mouse_entered():
+	SoundManager.UIHoverSFX.play()
 	creditsBtnMouseHover = true
 
 func _on_ExitBtn_mouse_entered():
+	SoundManager.UIHoverSFX.play()
 	exitBtnMouseHover = true
 
 # MOUSE EXITED

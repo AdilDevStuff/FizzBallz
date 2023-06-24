@@ -12,6 +12,7 @@ export (float) var marginLeftDefault = 622
 
 # BOOLEANS
 var backBtnHover = false
+var metaHovered = false
 
 # VECTOR
 
@@ -55,15 +56,25 @@ func backBtnMarginRightHover(delta):
 # ---------- SIGNALS ---------- #
 
 func _on_RichTextLabel_meta_clicked(meta):
+	SoundManager.UIClickSFX.play()
 	OS.shell_open(str(meta))
 
 func _on_BackBtn_pressed():
+	SoundManager.UIClickSFX.play()
 	creditsMenuAnims.play_backwards("Enter")
 	yield(creditsMenuAnims, "animation_finished")
 	mainMenuUI.menuAnims.play("Enter")
 	visible = false
 
+func _on_RichTextLabel_meta_hover_started(meta):
+	SoundManager.UIHoverSFX.play()
+	metaHovered = true
+
+func _on_RichTextLabel_meta_hover_ended(meta):
+	metaHovered = false
+
 func _on_BackBtn_mouse_entered():
+	SoundManager.UIHoverSFX.play()
 	backBtnHover = true
 
 func _on_BackBtn_mouse_exited():

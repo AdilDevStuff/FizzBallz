@@ -1,4 +1,4 @@
-extends Node
+extends spikeBall
 
 # ---------- VARIABLES ---------- #
 
@@ -13,12 +13,6 @@ extends Node
 
 
 # ONREADY
-onready var jumpSFX = $JumpSfx
-onready var characterSwitchSFX = $CharacterSwitchSFX
-onready var UIHoverSFX = $UIHoverSFX
-onready var UIClickSFX = $UIClickSFX
-onready var fusionCrystalSFX = $FusionCrystalSFX
-onready var gameplayTrack = $GameplayTrack
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 

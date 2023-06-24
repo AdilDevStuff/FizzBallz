@@ -1,10 +1,9 @@
-extends Node
+extends Control
 
 # ---------- VARIABLES ---------- #
 
 # NORMAL
-
-
+export (String) var mainMenuPath
 
 # BOOLEANS
 
@@ -13,12 +12,7 @@ extends Node
 
 
 # ONREADY
-onready var jumpSFX = $JumpSfx
-onready var characterSwitchSFX = $CharacterSwitchSFX
-onready var UIHoverSFX = $UIHoverSFX
-onready var UIClickSFX = $UIClickSFX
-onready var fusionCrystalSFX = $FusionCrystalSFX
-onready var gameplayTrack = $GameplayTrack
+
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
@@ -39,3 +33,6 @@ func _input(event):
 
 
 # ---------- SIGNALS ---------- #
+
+func _on_BackBtn_pressed():
+	SceneTransition.changeScene(mainMenuPath)

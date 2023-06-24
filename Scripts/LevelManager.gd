@@ -21,6 +21,9 @@ func _ready():
 	pass
 
 func _process(delta):
+	if Input.is_action_just_pressed("Restart"):
+		SceneTransition.reloadScene()
+	
 	if get_tree().current_scene.name == "Level_01":
 		player.canSwitch = false
 	elif get_tree().current_scene.name == "Level_02" and !isInSwitchZone:

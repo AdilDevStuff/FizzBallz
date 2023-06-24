@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/UserInterfacePrompts/UIButtonDesign.tres" type="StyleBox" id=1]
 [ext_resource path="res://Scripts/MenuBtns.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/CreditsMenuUI.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Fonts/LuckiestGuy.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Assets/UI Textures/BG.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Tracks/Fizzballz Menu.wav" type="AudioStream" id=10]
 
 [sub_resource type="Shader" id=68]
 code = "shader_type canvas_item;
@@ -507,7 +508,7 @@ THIS GAME IS MADE FOR SILVER'S JAM 2023 BASED ON THE THEME \"FUSION\".
 
 Assets:
 Game Art: Adil
-Sound FX: Adil
+Sound FX: Adil & [color=black] [url=https://pixabay.com/sound-effects/pop-39222/] Pixabay [/url] [/color]
 Sound Track: Adil
 
 Some assets are from[color=black][url=https://kenney.nl/] Kenney [/url][/color], which i edited according to my needs.
@@ -522,7 +523,7 @@ THIS GAME IS MADE FOR SILVER'S JAM 2023 BASED ON THE THEME \"FUSION\".
 
 Assets:
 Game Art: Adil
-Sound FX: Adil
+Sound FX: Adil &   Pixabay  
 Sound Track: Adil
 
 Some assets are from Kenney , which i edited according to my needs.
@@ -567,6 +568,11 @@ expand = true
 anims/Enter = SubResource( 66 )
 anims/RESET = SubResource( 67 )
 
+[node name="Music" type="Node" parent="."]
+
+[node name="MainMenuTrack" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 10 )
+
 [connection signal="mouse_entered" from="MainMenuUI/MenuBtns/PlayBtn" to="MainMenuUI/MenuBtns" method="_on_PlayBtn_mouse_entered"]
 [connection signal="mouse_exited" from="MainMenuUI/MenuBtns/PlayBtn" to="MainMenuUI/MenuBtns" method="_on_PlayBtn_mouse_exited"]
 [connection signal="pressed" from="MainMenuUI/MenuBtns/PlayBtn" to="MainMenuUI" method="_on_PlayBtn_pressed"]
@@ -577,6 +583,8 @@ anims/RESET = SubResource( 67 )
 [connection signal="mouse_exited" from="MainMenuUI/MenuBtns/ExitBtn" to="MainMenuUI/MenuBtns" method="_on_ExitBtn_mouse_exited"]
 [connection signal="pressed" from="MainMenuUI/MenuBtns/ExitBtn" to="MainMenuUI" method="_on_ExitBtn_pressed"]
 [connection signal="meta_clicked" from="CreditsMenuUI/Background/RichTextLabel" to="CreditsMenuUI" method="_on_RichTextLabel_meta_clicked"]
+[connection signal="meta_hover_ended" from="CreditsMenuUI/Background/RichTextLabel" to="CreditsMenuUI" method="_on_RichTextLabel_meta_hover_ended"]
+[connection signal="meta_hover_started" from="CreditsMenuUI/Background/RichTextLabel" to="CreditsMenuUI" method="_on_RichTextLabel_meta_hover_started"]
 [connection signal="mouse_entered" from="CreditsMenuUI/BackBtn" to="CreditsMenuUI" method="_on_BackBtn_mouse_entered"]
 [connection signal="mouse_exited" from="CreditsMenuUI/BackBtn" to="CreditsMenuUI" method="_on_BackBtn_mouse_exited"]
 [connection signal="pressed" from="CreditsMenuUI/BackBtn" to="CreditsMenuUI" method="_on_BackBtn_pressed"]

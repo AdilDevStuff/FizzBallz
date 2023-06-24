@@ -35,15 +35,18 @@ func _input(event):
 # ---------- SIGNALS ---------- #
 
 func _on_ResumeBtn_pressed():
+	SoundManager.UIClickSFX.play()
 	pauseMenuAnims.play_backwards("Enter")
 	yield(pauseMenuAnims, "animation_finished")
 	visible = false
 
 func _on_MenuBtn_pressed():
+	SoundManager.UIClickSFX.play()
 	pauseMenuAnims.play_backwards("Enter")
 	SceneTransition.changeScene("res://Scenes/UI/MainMenu.tscn")
 
 func _on_ExitBtn_pressed():
+	SoundManager.UIClickSFX.play()
 	pauseMenuAnims.play_backwards("Enter")
 	yield(pauseMenuAnims, "animation_finished")
 	get_tree().quit()

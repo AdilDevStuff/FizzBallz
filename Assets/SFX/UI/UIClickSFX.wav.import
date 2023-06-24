@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/DeathBall Goes Brrrr.wav-86dac9b9f102bcda56e0f152993fce36.sample"
+path="res://.import/UIClickSFX.wav-70e5ea53578c43f052bedf3a807d9e17.sample"
 
 [deps]
 
-source_file="res://Assets/SFX/Player/DeathBall Goes Brrrr.wav"
-dest_files=[ "res://.import/DeathBall Goes Brrrr.wav-86dac9b9f102bcda56e0f152993fce36.sample" ]
+source_file="res://Assets/SFX/UI/UIClickSFX.wav"
+dest_files=[ "res://.import/UIClickSFX.wav-70e5ea53578c43f052bedf3a807d9e17.sample" ]
 
 [params]
 
