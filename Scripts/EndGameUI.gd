@@ -35,4 +35,5 @@ func _input(event):
 # ---------- SIGNALS ---------- #
 
 func _on_BackBtn_pressed():
+	SoundManager.gameplayTrack.stop()
 	SceneTransition.changeScene(mainMenuPath)
