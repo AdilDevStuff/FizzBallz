@@ -21,6 +21,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel") and !visible and !pauseMenuAnims.is_playing():
+		SoundManager.gameplayTrack.stream_paused = true
 		pauseMenuAnims.play("Enter")
 
 func _physics_process(delta):
@@ -36,17 +37,20 @@ func _input(event):
 
 func _on_ResumeBtn_pressed():
 	SoundManager.UIClickSFX.play()
+	SoundManager.gameplayTrack.stream_paused = false
 	pauseMenuAnims.play_backwards("Enter")
 	yield(pauseMenuAnims, "animation_finished")
 	visible = false
 
 func _on_MenuBtn_pressed():
 	SoundManager.UIClickSFX.play()
+	SoundManager.gameplayTrack.stop()
 	pauseMenuAnims.play_backwards("Enter")
 	SceneTransition.changeScene("res://Scenes/UI/MainMenu.tscn")
 
 func _on_ExitBtn_pressed():
 	SoundManager.UIClickSFX.play()
+	SoundManager.gameplayTrack.stop()
 	pauseMenuAnims.play_backwards("Enter")
 	yield(pauseMenuAnims, "animation_finished")
 	get_tree().quit()
