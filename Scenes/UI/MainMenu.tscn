@@ -11,7 +11,7 @@
 [ext_resource path="res://Assets/UI Textures/BG.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Tracks/Fizzballz Menu.wav" type="AudioStream" id=10]
 
-[sub_resource type="Shader" id=68]
+[sub_resource type="Shader" id=70]
 code = "shader_type canvas_item;
 
 uniform float speed = 0.08;
@@ -23,7 +23,7 @@ void fragment()
 }"
 
 [sub_resource type="ShaderMaterial" id=69]
-shader = SubResource( 68 )
+shader = SubResource( 70 )
 shader_param/speed = 0.02
 shader_param/direction = Vector2( -1, -1 )
 

@@ -49,6 +49,7 @@ onready var textures = [normalBall, beachBall, stoneBall]
 
 func _ready():
 	SoundManager.gameplayTrack.play()
+	SoundManager.gameplayTrack.stream_paused = false
 	inputPrompt.visible = false
 	pickCast.cast_to.x = pickupCastLength
 	cratespawnPos.position = pickupDropPosition

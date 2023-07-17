@@ -14,7 +14,7 @@ var isInRange = false
 
 
 # ONREADY
-onready var player = get_tree().get_root().get_child(1).find_node("Player")
+onready var player = get_tree().current_scene.find_node("Player")
 
 # ---------- BUILT-IN FUNCTIONS ---------- #
 
